@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        /* [] */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .carousel {
+            width: 600px;
+            height: 200px;
+            position: relative;
+            margin: 30vh auto;
+        }
+
+        .carousel>div {
+            transition: 0.5s;
+            position: absolute;
+            height: 100%;
+            border: solid 1px red;
+            width: 240px;
+            height: 240px;
+            transform: translateY(-50%);
+            top: 50%;
+        }
+
+        .carousel>div img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel div[key='1'] {
+            left: 0;
+            width: 180px;
+            height: 180px;
+        }
+
+        .carousel div[key='2'] {
+            transform: translate(-50%, -50%);
+            left: 50%;
+            z-index: 3;
+        }
+
+        .carousel div[key='3'] {
+            left: 420px;
+            height: 180px;
+            width: 180px;
+            z-index: 2;
+        }
+    </style>
+    <div class="carousel">
+        <div key="1" style="background-color: purple;">
+            <img src="./1.png" alt="">
+        </div>
+        <div key="2" style="background-color: red;">
+            <img src="./2.jpg" alt="">
+        </div>
+        <div key="3" style="background-color: green;">
+            <img src="./pink.jpg" alt="">
+        </div>
+    </div>
+    <script>
+        const carouselChilderen = document.querySelectorAll('.carousel > div');
+
+        function shaffleCarouselKeys() {
+            carouselChilderen.forEach(child => {
+                if (child.getAttribute('key') == 1)
+                    child.setAttribute('key', '2')
+                else if (child.getAttribute('key') == 2)
+                    child.setAttribute('key', '3')
+                else if (child.getAttribute('key') == 3)
+                    child.setAttribute('key', '1')
+            });
+        }
+
+        setInterval(() => {
+            shaffleCarouselKeys();
+        }, 1000);
+    </script>
+</body>
+
+</html>
